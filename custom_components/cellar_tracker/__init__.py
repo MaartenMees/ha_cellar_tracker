@@ -101,10 +101,10 @@ class WineCellarData:
         data[group] = {}
         for row1, item in group_data.iterrows():
           data[group][row1] = item.to_dict()
-          data[group][row1]["sub_type"] = row
+          data[group][row1]["sub_type"] = row1
         for row2, item in group_data.iterrows():
           data[group][row2] = item.to_dict()
-          data[group][row2]["bin"] = row
+          data[group][row2]["bin"] = row2
         for row3, item in group_data.iterrows():
           data[group][row3] = item.to_dict()
           data[group][row3]["vintage"] = row3
