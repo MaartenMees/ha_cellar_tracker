@@ -90,14 +90,14 @@ class WineCellarData:
       df = pd.DataFrame(list)
       df[["Price","Valuation"]] = df[["Price","Valuation"]].apply(pd.to_numeric)
 
-      groups = ['Varietal', 'Country', 'Vintage', 'Producer', 'Type']
+      groups = ['Varietal', 'Country', 'Vintage', 'Producer', 'Type', 'Bin']
 
       for group in groups:
-        group_data = df.groupby(group).agg({'iWine':'count','Valuation':['sum','mean']})
+        group_data = df.groupby(group).agg({'iWine':'count','Vintage','Bin','Size','Valuation':['sum','mean']})
         group_data.columns = group_data.columns.droplevel(0)
         group_data["%"] = 1
         group_data["%"] = (group_data['count']/group_data['count'].sum() ) * 100
-        group_data.columns = ["count", "value_total", "value_avg", "%"]
+        group_data.columns = ["count", "vintage", "size", "bin", "value_total", "value_avg", "%"]
         data[group] = {}
         for row, item in group_data.iterrows():
           data[group][row] = item.to_dict()
