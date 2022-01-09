@@ -97,19 +97,15 @@ class WineCellarData:
         group_data.columns = group_data.columns.droplevel(0)
         group_data["%"] = 1
         group_data["%"] = (group_data['count']/group_data['count'].sum() ) * 100
-        group_data.columns = ["count", "value_total", "value_avg", "%"]
+        group_data.columns = ["count", "value_total", "value_avg", "%", "Bin", "Size"]
         data[group] = {}
-        for row1, item in group_data.iterrows():
-          data[group][row1] = item.to_dict()
-          data[group][row1]["sub_type"] = row1
-        for row2, item in group_data.iterrows():
-          data[group][row2] = item.to_dict()
-          data[group][row2]["bin"] = row2
-        for row3, item in group_data.iterrows():
-          data[group][row3] = item.to_dict()
-          data[group][row3]["vintage"] = row3
-
-           
+        for row, item in group_data.iterrows():
+          data[group][row] = item.to_dict()
+          data[group][row]["sub_type"] = row
+            
+            
+      data["bin"] = df['Bin']
+      data["size"] = df['Size']     
       data["total_bottles"] = len(df)
       data["total_value"] = df['Valuation'].sum()
       data["average_value"] = df['Valuation'].mean()
