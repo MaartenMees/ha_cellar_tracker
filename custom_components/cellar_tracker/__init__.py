@@ -101,7 +101,7 @@ class WineCellarData:
         data[group] = {}
         for row, item in group_data.iterrows():
           data[group][row] = item.to_dict()
-          data[group][row]["sub_type"] = row
+          data[group][row]["sub_type", "bin", "vintage"] = row
 
 
       data["total_bottles"] = len(df)
