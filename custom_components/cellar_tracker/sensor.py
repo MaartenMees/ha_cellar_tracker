@@ -76,7 +76,7 @@ class WineCellarSensor(Entity):
     @property
     def icon(self):
         if(re.match(".+_value",self._sensor_type)):
-            return "mdi:currency-usd"
+            return "mdi:currency-eur"
 
         return "mdi:bottle-wine"
     
