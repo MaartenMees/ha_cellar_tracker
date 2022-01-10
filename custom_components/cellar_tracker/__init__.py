@@ -93,7 +93,7 @@ class WineCellarData:
       groups = ['Varietal', 'Country', 'Vintage', 'Producer', 'Type']
 
       for group in groups:
-        group_data = df.groupby(group).agg({'iWine':'count','Valuation':['sum','mean'],'Size':'nunique','Bin':'nunique'})
+        group_data = df.groupby(group).agg({'iWine':'count','Valuation':['sum','mean']})
         group_data.columns = group_data.columns.droplevel(0)
         group_data["%"] = 1
         group_data["%"] = (group_data['count']/group_data['count'].sum() ) * 100
