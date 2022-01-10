@@ -97,6 +97,8 @@ class WineCellarData:
         group_data.columns = group_data.columns.droplevel(0)
         group_data["%"] = 1
         group_data["%"] = (group_data['count']/group_data['count'].sum() ) * 100
+        group_data["size_bottle"] = df['Size']
+        group_data["cellar_location"] = df['Bin']
         group_data.columns = ["count", "value_total", "value_avg", "%", "bottle_size", "location_cellar"]
         data[group] = {}
         for row, item in group_data.iterrows():
@@ -108,8 +110,6 @@ class WineCellarData:
       data["total_bottles"] = len(df)
       data["total_value"] = df['Valuation'].sum()
       data["average_value"] = df['Valuation'].mean()
-      data["size_bottle"] = df['Size']
-      data["cellar_location"] = df['Bin']
       self._data = data
       
 
